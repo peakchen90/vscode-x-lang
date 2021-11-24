@@ -8,23 +8,26 @@
 			"include": "#storages"
 		},
 		{
-			"include": "#entities"
-		},
-		{
 			"include": "#strings"
 		},
 		{
 			"include": "#numbers"
 		},
 		{
+			"include": "#constants"
+		},
+		{
 			"include": "#comments"
+		},
+		{
+			"include": "#function-declaration"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.x-lang",
-				"match": "\\b(fn|var|return|if|else|loop|break|continue|pub|import|class|extends)\\b"
+				"match": "\\b(fn|var|return|if|else|loop|break|continue|import|class|extends)\\b"
 			}, {
 				"name": "keyword.operator.x-lang",
 				"match": "([+*=<>&|!~%^]|/(?!/)|-(?!>))"
@@ -39,15 +42,15 @@
 						"name": "storage.type.x-lang"
 					}
 				}
+			}, {
+				"name": "storage.modifier.x-lang",
+				"match": "\\b(pub)\\b"
 			}]
-		},
-		"entities": {
-			"patterns": []
 		},
 		"strings": {
 			"patterns": [{
 				"name": "string.quoted.double.raw.x-lang",
-				"begin": "r\"",
+				"begin": "\\br\"",
 				"end": "\"",
 				"patterns": [{
 					"name": "constant.character.escape.x-lang",
@@ -69,12 +72,19 @@
 				"match": "\\b\\d+(\\.\\d*)?\\b"
 			}]
 		},
+		"constants": {
+			"patterns": [{
+				"name": "constant.language.x-lang",
+				"match": "\\b(true|false)\\b"
+			}]
+		},
 		"comments": {
 			"patterns": [{
 				"name": "comment.line.x-lang",
 				"match": "//.*"
 			}]
-		}
+		},
+		"function-declaration": {}
 	},
 	"scopeName": "source.x"
 }
