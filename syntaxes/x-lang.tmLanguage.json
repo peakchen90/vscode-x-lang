@@ -1,31 +1,79 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "x-lang",
-	"patterns": [
-		{
+	"patterns": [{
 			"include": "#keywords"
 		},
 		{
+			"include": "#storages"
+		},
+		{
+			"include": "#entities"
+		},
+		{
 			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#comments"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.x-lang",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(fn|var|return|if|else|loop|break|continue|pub|import|class|extends)\\b"
+			}, {
+				"name": "keyword.operator.x-lang",
+				"match": "([+*=<>&|!~%^]|/(?!/)|-(?!>))"
 			}]
 		},
+		"storages": {
+			"patterns": [{
+				"begin": "(\\:|->)\\s*",
+				"end": "(num|bool|str|void)\\b",
+				"endCaptures": {
+					"1": {
+						"name": "storage.type.x-lang"
+					}
+				}
+			}]
+		},
+		"entities": {
+			"patterns": []
+		},
 		"strings": {
-			"name": "string.quoted.double.x-lang",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
+			"patterns": [{
+				"name": "string.quoted.double.raw.x-lang",
+				"begin": "r\"",
+				"end": "\"",
+				"patterns": [{
 					"name": "constant.character.escape.x-lang",
 					"match": "\\\\."
-				}
-			]
+				}]
+			}, {
+				"name": "string.quoted.double.x-lang",
+				"begin": "\"",
+				"end": "(\"|\\n)",
+				"patterns": [{
+					"name": "constant.character.escape.x-lang",
+					"match": "\\\\."
+				}]
+			}]
+		},
+		"numbers": {
+			"patterns": [{
+				"name": "constant.numeric.x-lang",
+				"match": "\\b\\d+(\\.\\d*)?\\b"
+			}]
+		},
+		"comments": {
+			"patterns": [{
+				"name": "comment.line.x-lang",
+				"match": "//.*"
+			}]
 		}
 	},
 	"scopeName": "source.x"

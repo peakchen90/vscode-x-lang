@@ -1,12 +1,18 @@
 {
     "name": "vscode-x-lang",
     "displayName": "x-lang",
-    "description": "",
+    "description": "VSCode x-lang 语法插件",
     "version": "0.0.1",
     "publisher": "peakchen90",
     "scripts": {
         "test": "node ./tests/runTest.js"
     },
+    "keywords": [
+        "x-lang",
+        "language",
+        "grammar",
+        "highlight"
+    ],
     "engines": {
         "vscode": "^1.50.0"
     },
@@ -14,28 +20,31 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [
-            {
-                "id": "x-lang",
-                "aliases": [
-                    "x-lang",
-                    "x-lang"
-                ],
-                "extensions": [
-                    ".x"
-                ],
-                "configuration": "./language-configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "x-lang",
-                "scopeName": "source.x",
-                "path": "./syntaxes/x-lang.tmLanguage.json"
-            }
-        ]
+        "languages": [{
+            "id": "x-lang",
+            "aliases": [
+                "x",
+                "x-lang"
+            ],
+            "extensions": [
+                ".x"
+            ],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "x-lang",
+            "scopeName": "source.x",
+            "path": "./syntaxes/x-lang.tmLanguage.json"
+        }]
     },
     "devDependencies": {
         "vscode-test": "^1.6.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/peakchen90/vscode-x-lang.git"
+    },
+    "bugs": {
+        "url": "https://github.com/peakchen90/vscode-x-lang/issues"
     }
 }
