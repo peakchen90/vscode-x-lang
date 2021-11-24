@@ -1,0 +1,6 @@
+.vscode/**
+.vscode-test/**
+.gitignore
+.gitattributes
+yarn.lock
+vsc-extension-quickstart.md

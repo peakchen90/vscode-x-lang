@@ -1,0 +1,41 @@
+{
+    "name": "vscode-x-lang",
+    "displayName": "x-lang",
+    "description": "",
+    "version": "0.0.1",
+    "publisher": "peakchen90",
+    "scripts": {
+        "test": "node ./tests/runTest.js"
+    },
+    "engines": {
+        "vscode": "^1.50.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "x-lang",
+                "aliases": [
+                    "x-lang",
+                    "x-lang"
+                ],
+                "extensions": [
+                    ".x"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "x-lang",
+                "scopeName": "source.x",
+                "path": "./syntaxes/x-lang.tmLanguage.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "vscode-test": "^1.6.1"
+    }
+}
