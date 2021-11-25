@@ -2,5 +2,6 @@
 .vscode-test/**
 .gitignore
 .gitattributes
+.editorconfig
 yarn.lock
 vsc-extension-quickstart.md
