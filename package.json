@@ -5,7 +5,7 @@
   "version": "0.0.2",
   "publisher": "peakchen90",
   "main": "./src/index.js",
-  "icon": "./resource/logo.png",
+  "icon": "resource/logo.png",
   "scripts": {
     "test": "node ./tests/runTest.js"
   },
