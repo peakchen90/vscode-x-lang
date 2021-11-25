@@ -2,7 +2,7 @@
   "name": "vscode-x-lang",
   "displayName": "x-lang",
   "description": "VSCode x-lang 语法插件",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "peakchen90",
   "main": "./src/index.js",
   "icon": "resource/logo.png",

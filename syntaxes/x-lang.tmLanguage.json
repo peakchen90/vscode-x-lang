@@ -158,7 +158,7 @@
           },
           "endCaptures": {
             "1": {
-              "name": "support.type.x-lang"
+              "name": "storage.type.x-lang"
             },
             "2": {
               "name": "invalid.illegal.x-lang"
@@ -197,7 +197,7 @@
       },
       "endCaptures": {
         "1": {
-          "name": "support.type.x-lang"
+          "name": "storage.type.x-lang"
         },
         "2": {
           "name": "invalid.illegal.x-lang"
