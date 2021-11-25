@@ -4,6 +4,7 @@ const legend = new vscode.SemanticTokensLegend(tokenTypes, tokenModifiers);
 
 /**
  * @type {import('vscode').DocumentSemanticTokensProvider}
+ * @see https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide
  */
 const provider = {
   /**
