@@ -2,9 +2,10 @@
   "name": "vscode-x-lang",
   "displayName": "x-lang",
   "description": "VSCode x-lang 语法插件",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "peakchen90",
   "main": "./src/index.js",
+  "icon": "./resource/logo.png",
   "scripts": {
     "test": "node ./tests/runTest.js"
   },
@@ -29,7 +30,8 @@
         "id": "x-lang",
         "aliases": [
           "x",
-          "x-lang"
+          "x-lang",
+          "xlang"
         ],
         "extensions": [
           ".x"

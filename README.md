@@ -1,8 +1,9 @@
 # vscode-x-lang
 
-VSCode x-lang 语法插件
+The `x-lang` language supports for vscode
 
-> TODO: 暂不可用
+## 语法高亮
+![](./resource/syntax-highlight.png)
 
 ## 开发资源
 
