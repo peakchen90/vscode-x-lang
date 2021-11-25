@@ -24,19 +24,29 @@
       "include": "#variable-declaration"
     },
     {
+      "include": "#kinds"
+    },
+    {
       "include": "#identifiers"
+    },
+    {
+      "include": "#operators"
     }
   ],
   "repository": {
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.x-lang",
+          "match": "([+*=<>&|!~%^]|/(?!/)|-(?!>))"
+        }
+      ]
+    },
     "keywords": {
       "patterns": [
         {
           "name": "keyword.control.x-lang",
           "match": "\\b(return|if|else|loop|break|continue|import|extends)\\b"
-        },
-        {
-          "name": "keyword.operator.x-lang",
-          "match": "([+*=<>&|!~%^]|/(?!/)|-(?!>))"
         },
         {
           "name": "storage.modifier.x-lang",
@@ -49,6 +59,10 @@
         {
           "name": "variable.language.x-lang",
           "match": "\\b(super|this)\\b"
+        },
+        {
+          "name": "storage.type.x-lang",
+          "match": "\\b(var)\\b"
         }
       ]
     },
@@ -73,6 +87,14 @@
             {
               "name": "constant.character.escape.x-lang",
               "match": "\\\\."
+            },
+            {
+              "match": "([^\"]*?)(?=\n)",
+              "captures": {
+                "1": {
+                  "name": "invalid.illegal.x-lang"
+                }
+              }
             }
           ]
         },
@@ -87,6 +109,11 @@
         {
           "name": "comment.line.x-lang",
           "match": "//.*"
+        },
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.x-lang"
         }
       ]
     },
@@ -122,11 +149,19 @@
           ]
         },
         {
-          "begin": "->",
-          "end": "(num|bool|str|void)\\b",
+          "begin": "(->)",
+          "end": "(num|bool|str|void|(\\w+))\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.operator.x-lang"
+            }
+          },
           "endCaptures": {
             "1": {
-              "name": "keyword.other.x-lang"
+              "name": "support.type.x-lang"
+            },
+            "2": {
+              "name": "invalid.illegal.x-lang"
             }
           }
         }
@@ -152,30 +187,17 @@
         }
       ]
     },
-    "variable-declaration": {
-      "begin": "\\b(var)\\b",
-      "end": "\\=",
+    "kinds": {
+      "begin": "(\\:)",
+      "end": "(num|bool|str|void|(\\w+))\\b",
       "beginCaptures": {
         "1": {
-          "name": "storage.type.x-lang"
+          "name": "keyword.operator.x-lang"
         }
       },
-      "patterns": [
-        {
-          "match": "[a-zA-Z_$][a-zA-Z\\d_$]*",
-          "name": "variable.other.x-lang"
-        },
-        {
-          "include": "#kinds"
-        }
-      ]
-    },
-    "kinds": {
-      "begin": "\\:",
-      "end": "(num|bool|str|void|(\\w+))\\b",
       "endCaptures": {
         "1": {
-          "name": "keyword.other.x-lang"
+          "name": "support.type.x-lang"
         },
         "2": {
           "name": "invalid.illegal.x-lang"
