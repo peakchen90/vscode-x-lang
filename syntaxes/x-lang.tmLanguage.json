@@ -1,90 +1,191 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "x-lang",
-	"patterns": [{
+	"patterns": [
+		{
 			"include": "#keywords"
 		},
 		{
-			"include": "#storages"
-		},
-		{
-			"include": "#strings"
+			"include": "#constants"
 		},
 		{
 			"include": "#numbers"
-		},
-		{
-			"include": "#constants"
 		},
 		{
 			"include": "#comments"
 		},
 		{
 			"include": "#function-declaration"
+		},
+		{
+			"include": "#class-declaration"
+		},
+		{
+			"include": "#variable-declaration"
+		},
+		{
+			"include": "#identifiers"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.x-lang",
-				"match": "\\b(fn|var|return|if|else|loop|break|continue|import|class|extends)\\b"
-			}, {
-				"name": "keyword.operator.x-lang",
-				"match": "([+*=<>&|!~%^]|/(?!/)|-(?!>))"
-			}]
-		},
-		"storages": {
-			"patterns": [{
-				"begin": "(\\:|->)\\s*",
-				"end": "(num|bool|str|void)\\b",
-				"endCaptures": {
-					"1": {
-						"name": "storage.type.x-lang"
-					}
+			"patterns": [
+				{
+					"name": "keyword.control.x-lang",
+					"match": "\\b(return|if|else|loop|break|continue|import|extends)\\b"
+				},
+				{
+					"name": "keyword.operator.x-lang",
+					"match": "([+*=<>&|!~%^]|/(?!/)|-(?!>))"
+				},
+				{
+					"name": "storage.modifier.x-lang",
+					"match": "\\b(pub)\\b"
+				},
+				{
+					"name": "constant.language.x-lang",
+					"match": "\\b(true|false)\\b"
+				},
+				{
+					"name": "variable.language.x-lang",
+					"match": "\\b(super|this)\\b"
 				}
-			}, {
-				"name": "storage.modifier.x-lang",
-				"match": "\\b(pub)\\b"
-			}]
-		},
-		"strings": {
-			"patterns": [{
-				"name": "string.quoted.double.raw.x-lang",
-				"begin": "\\br\"",
-				"end": "\"",
-				"patterns": [{
-					"name": "constant.character.escape.x-lang",
-					"match": "\\\\."
-				}]
-			}, {
-				"name": "string.quoted.double.x-lang",
-				"begin": "\"",
-				"end": "(\"|\\n)",
-				"patterns": [{
-					"name": "constant.character.escape.x-lang",
-					"match": "\\\\."
-				}]
-			}]
-		},
-		"numbers": {
-			"patterns": [{
-				"name": "constant.numeric.x-lang",
-				"match": "\\b\\d+(\\.\\d*)?\\b"
-			}]
+			]
 		},
 		"constants": {
-			"patterns": [{
-				"name": "constant.language.x-lang",
-				"match": "\\b(true|false)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "string.quoted.double.raw.x-lang",
+					"begin": "\\br\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.x-lang",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.x-lang",
+					"begin": "\"",
+					"end": "(\"|\\n)",
+					"patterns": [
+						{
+							"name": "constant.character.escape.x-lang",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "constant.numeric.x-lang",
+					"match": "\\b\\d+(\\.\\d*)?\\b"
+				}
+			]
 		},
 		"comments": {
-			"patterns": [{
-				"name": "comment.line.x-lang",
-				"match": "//.*"
-			}]
+			"patterns": [
+				{
+					"name": "comment.line.x-lang",
+					"match": "//.*"
+				}
+			]
 		},
-		"function-declaration": {}
+		"function-declaration": {
+			"begin": "\\b(fn)\\b",
+			"end": "\\{",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.x-lang"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "\\G",
+					"end": "([a-zA-Z_$][a-zA-Z\\d_$]*)",
+					"endCaptures": {
+						"1": {
+							"name": "entity.name.function.x-lang"
+						}
+					}
+				},
+				{
+					"begin": "\\(",
+					"end": "\\)",
+					"patterns": [
+						{
+							"match": "[a-zA-Z_$][a-zA-Z\\d_$]*",
+							"name": "variable.parameter.x-lang"
+						},
+						{
+							"include": "#kinds"
+						}
+					]
+				},
+				{
+					"begin": "->",
+					"end": "(num|bool|str|void)\\b",
+					"endCaptures": {
+						"1": {
+							"name": "keyword.other.x-lang"
+						}
+					}
+				}
+			]
+		},
+		"class-declaration": {
+			"begin": "\\b(class)\\b",
+			"end": "\\{",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.x-lang"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "\\G",
+					"end": "([a-zA-Z_$][a-zA-Z\\d_$]*)",
+					"endCaptures": {
+						"1": {
+							"name": "entity.name.type.x-lang"
+						}
+					}
+				}
+			]
+		},
+		"variable-declaration": {
+			"begin": "\\b(var)\\b",
+			"end": "\\=",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.x-lang"
+				}
+			},
+			"patterns": [
+				{
+					"match": "[a-zA-Z_$][a-zA-Z\\d_$]*",
+					"name": "variable.other.x-lang"
+				},
+				{
+					"include": "#kinds"
+				}
+			]
+		},
+		"kinds": {
+			"begin": "\\:",
+			"end": "(num|bool|str|void|(\\w+))\\b",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.other.x-lang"
+				},
+				"2": {
+					"name": "invalid.illegal.x-lang"
+				}
+			}
+		},
+		"identifiers": {
+			"match": "[a-zA-Z_$][a-zA-Z\\d_$]*",
+			"name": "variable.other.x-lang"
+		}
 	},
 	"scopeName": "source.x"
 }
