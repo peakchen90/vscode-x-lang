@@ -114,6 +114,10 @@
           "begin": "/\\*",
           "end": "\\*/",
           "name": "comment.block.x-lang"
+        },
+        {
+          "name": "comment.number-sign.x-lang",
+          "match": "^#!.*"
         }
       ]
     },
